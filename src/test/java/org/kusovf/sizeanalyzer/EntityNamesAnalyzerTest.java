@@ -1,38 +1,50 @@
 package org.kusovf.sizeanalyzer;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.kusovf.sizeanalyzer.dto.EntityMeta;
-import org.kusovf.sizeanalyzer.dto.MetaInfo;
 
-import static org.junit.Assert.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import net.lingala.zip4j.core.ZipFile;
 
 public class EntityNamesAnalyzerTest {
 
     @Test
     public void testEntityNameAnalyzis() {
-        String in = "{" +
-                "  path: 'C:\\test'," +
-                "  entities: [" +
-                "       {   " +
-                "           name: com.org.Entity," +
-                "           subEntities: []," +
-                "           indexes: [{name: index1, regexp: Index_index1}]" +
-                "        }" +
-                "  ]," +
-                "  exclusionPatterns: ['excludeMe']" +
-                "}";
-        MetaInfo metaInfo = new MetaParser().parse(in);
-        assertNotNull(metaInfo);
-        assertNotNull(metaInfo.getPath());
-        assertFalse(metaInfo.getEntities().isEmpty());
-        assertFalse(metaInfo.getExclusionPatterns().isEmpty());
-        assertFalse(metaInfo.getExclusionPatterns().isEmpty());
-        EntityMeta meta = metaInfo.getEntities().get(0);
-        assertNotNull(meta.getName());
-        assertTrue(meta.getSubEntityes().isEmpty());
-        assertFalse(meta.getIndexes().isEmpty());
-        EntityMeta index = meta.getIndexes().get(0);
-        assertNotNull(index.getName());
-        assertNotNull(index.getRegexp());
+        try {
+            unpackTestData();
+        } finally {
+            removeTestData();
+        }
+    }
+
+    private Path unpackTestData() {
+        try {
+            URL testZip = getClass().getClassLoader().getResource("testData.zip");
+            ZipFile zipFile = new ZipFile(Paths.get(testZip.toURI()).toFile());
+            zipFile.extractAll(System.getProperty("java.io.tmpdir"));
+            return getTestDataPath();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Path getTestDataPath() {
+        return Paths.get(System.getProperty("java.io.tmpdir"), "testData");
+    }
+
+    private void removeTestData() {
+        try {
+            File file = getTestDataPath().toFile();
+            if (file.exists()) {
+                FileUtils.deleteDirectory(getTestDataPath().toFile());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
