@@ -1,8 +1,8 @@
-EntityName,Overal size(bytes),Linked Entityes size(bytes),Indexes size (bytes),Child of,Directory path
-com.org.AnotherEntity,222,0,106,,com.org.AnotherEntity
-Index_com.org.AnotherEntity#code,51,0,0,com.org.AnotherEntity,Index_com.org.AnotherEntity#code
-Index_com.org.AnotherEntity#name,55,0,0,com.org.AnotherEntity,Index_com.org.AnotherEntity#name
-com.org.Entity,345,221,31,,com.org.Entity
-Index_com.org.Entity#start,31,0,0,Index_com.org.Entity,Index_com.org.Entity#start
-com.org.LinkedEntity,221,0,125,com.org.Entity,com.org.LinkedEntity
-Index_com.org.LinkedEntity#code,125,0,0,com.org.LinkedEntity,Index_com.org.LinkedEntity#code
+EntityName,Full size(bytes),Linked Entityes size(bytes),Indexes size (bytes),Child of,Directory path
+com.org.AnotherEntity,222,0,106,
+Index_com.org.AnotherEntity#code,51,0,0,com.org.AnotherEntity
+Index_com.org.AnotherEntity#name,55,0,0,com.org.AnotherEntity
+com.org.Entity,345,221,31,
+Index_com.org.Entity#start,31,0,0,com.org.Entity
+com.org.LinkedEntity,221,0,125,com.org.Entity
+Index_com.org.LinkedEntity#code,125,0,0,com.org.LinkedEntity

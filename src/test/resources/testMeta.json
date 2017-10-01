@@ -1,0 +1,20 @@
+{
+  "indexPattern": "Index_${entityName}#.*",
+  "entities": [
+    {
+      "name": "com.org.AnotherEntity"
+    },
+    {
+      "name": "com.org.Entity",
+      "subEntities": [
+        {
+          "name": "com.org.LinkedEntity"
+        }
+      ]
+    }
+  ],
+  "exclusionPatterns": [
+    ".*meta",
+    ".*excludeMe"
+  ]
+}

@@ -1,30 +1,20 @@
-package org.kusovf.sizeanalyzer.dto;
+package org.kusovf.sizeanalyzer.dtos;
 
-import com.google.common.collect.ImmutableList;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
-public class MetaInfo {
-    private String path;
+public class EntityMetaRoot {
+    private String indexPattern;
     private List<EntityMeta> entities = Collections.emptyList();
     private List<String> exclusionPatterns = Collections.emptyList();
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public List<EntityMeta> getEntities() {
-        return new ArrayList<>(entities);
+        return entities;
     }
 
     public void setEntities(List<EntityMeta> entities) {
-        this.entities = ImmutableList.copyOf(entities);
+        this.entities = entities;
     }
 
     public List<String> getExclusionPatterns() {
@@ -32,6 +22,15 @@ public class MetaInfo {
     }
 
     public void setExclusionPatterns(List<String> exclusionPatterns) {
-        this.exclusionPatterns = ImmutableList.copyOf(exclusionPatterns);;
+        this.exclusionPatterns = exclusionPatterns;
+    }
+
+    public String getIndexPattern() {
+        return indexPattern;
+    }
+
+    public EntityMetaRoot setIndexPattern(String indexPattern) {
+        this.indexPattern = indexPattern;
+        return this;
     }
 }
